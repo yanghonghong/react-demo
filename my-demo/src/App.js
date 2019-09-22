@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "antd/dist/antd.css";
+import { Layout, Menu } from "antd";
+import {
+  HashRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import NavTop from './components/NavTop/NavTop'
+import Home from './containers/Home/Home';
+import UserCenter from './containers/UserCenter/UserCenter';
+import ProductCenter from './containers/ProductCenter/ProductCenter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const { Header, Content, Sider } = Layout;
+const { SubMenu } = Menu;
+
+
+class App extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <Router>
+          <Header>
+            <NavTop />
+          </Header>
+          <Content>
+            <Switch>
+              <Route path="/" exact={true} component={Home} />
+              <Route path="/home" component={Home} />
+              <Route path="/usercenter" component={UserCenter} />
+              <Route path="/productcenter" component={ProductCenter} />
+            </Switch>
+          </Content>
+        </Router>
+      </Layout>
+    );
+  }
 }
-
 export default App;
